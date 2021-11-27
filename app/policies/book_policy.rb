@@ -14,7 +14,16 @@ class BookPolicy < ApplicationPolicy
   end
 
   def update?
+    cur_user?
+  end
+
+  def destroy?
+    cur_user?
+  end
+
+  def cur_user?
     record.user == user
+
   end
 end
 
