@@ -6,6 +6,16 @@ class Api::V1::BooksController < Api::V1::BaseController
     @books = policy_scope(Book)
   end
 
+  def create
+    @book = current_user.books.build(book_params)
+    authorize @book
+    if @book.save
+      render :show, status: :created
+    else
+      render_error
+    end
+  end
+
   def show
     true
   end

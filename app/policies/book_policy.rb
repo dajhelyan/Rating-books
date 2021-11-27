@@ -9,6 +9,10 @@ class BookPolicy < ApplicationPolicy
     true
   end
 
+  def create?
+    user.present?
+  end
+
   def update?
     record.user == user
   end
